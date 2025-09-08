@@ -12,5 +12,10 @@ cmake -S . -B build -DCMAKE_CUDA_ARCHITECTURES=native
 cmake --build build -j
 ```
 
-# Run the custom benchmark
-./build/bin/reproduce_benchmark
+# Run the benchmark
+
+Run the custom benchmark using: 
+
+```
+./build/bin/reproduce_bench
+```
