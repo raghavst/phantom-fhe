@@ -1,7 +1,7 @@
 # PhantomFHE: A CUDA-Accelerated Fully Homomorphic Encryption Library
 
 This is a fork of the [PhantomFHE](https://github.com/encryptorion-lab/phantom-fhe)
-used for benchmarking.
+repository and is used for benchmarking.
 
 # Compiling the benchmark
 
