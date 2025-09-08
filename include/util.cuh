@@ -32,7 +32,7 @@ inline int my_rand_int(int min, int max) {
 
 inline void print_timer_banner() {
     // print header
-    std::cout << "function,trials,median time (us),mean time (us),std. dev." << std::endl;
+    std::cout << "function,trials,median time (us),mean time (us)" << std::endl;
 }
 
 class ChronoTimer {
@@ -46,7 +46,6 @@ public:
         auto mean_time = mean(time_);
         auto median_time = median(time_);
         auto min_time = min(time_);
-        auto stddev = std_dev(time_);
         std::cout << func_name_ << ","
                   << n_trials << ","
                   << median_time << ","
@@ -109,19 +108,5 @@ private:
 
         sort(v.begin(), v.end());
         return v.back();
-    }
-
-    static double std_dev(std::vector<float> const &v) {
-        if (v.empty())
-            return 0;
-
-        auto const count = static_cast<float>(v.size());
-        float mean = std::reduce(v.begin(), v.end()) / count;
-
-        std::vector<double> diff(v.size());
-
-        std::transform(v.begin(), v.end(), diff.begin(), [mean](double x) { return x - mean; });
-        double sq_sum = std::inner_product(diff.begin(), diff.end(), diff.begin(), 0.0);
-        return std::sqrt(sq_sum / count);
     }
 };

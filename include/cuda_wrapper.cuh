@@ -204,7 +204,6 @@ namespace phantom::util {
             auto mean_time = mean(time_);
             auto min_time = min(time_);
             auto median_time = median(time_);
-            auto stddev = std_dev(time_);
             std::cout << func_name_ << ","
                       << n_trials << ","
                       << median_time << ","
@@ -265,20 +264,6 @@ namespace phantom::util {
 
             sort(v.begin(), v.end());
             return v.back() * 1000;
-        }
-
-        static double std_dev(std::vector<float> const &v) {
-            if (v.empty())
-                return 0;
-
-            auto const count = static_cast<float>(v.size());
-            float mean = std::reduce(v.begin(), v.end()) / count;
-
-            std::vector<double> diff(v.size());
-
-            std::transform(v.begin(), v.end(), diff.begin(), [mean](double x) { return x - mean; });
-            double sq_sum = std::inner_product(diff.begin(), diff.end(), diff.begin(), 0.0);
-            return std::sqrt(sq_sum / count);
         }
     };
 
